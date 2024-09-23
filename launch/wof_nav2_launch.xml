@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<launch>
+    <!-- arguments -->
+    <arg name="use_sim_time" default="false" />
+    <arg name="map_file" default="$(find-pkg-share wof_nav2)/maps/dummy.yaml" />
+    <arg name="nav2_params_file" default="$(find-pkg-share wof_nav2)/config/wof_nav2_params.yaml" />
+
+    <!-- navigation -->
+    <include file="$(find-pkg-share wof_nav2)/launch/bringup_launch.py">
+        <arg name="use_sim_time" value="$(var use_sim_time)" />
+        <arg name="map" value="$(var map_file)" />
+        <arg name="params_file" value="$(var nav2_params_file)" />
+    </include>
+
+    <!-- static tf -->
+    <!-- <node pkg="tf2_ros" exec="static_transform_publisher" name="map_odom_broadcaster" args="0 0 0 0 0 0 map odom" /> -->
+
+</launch>
