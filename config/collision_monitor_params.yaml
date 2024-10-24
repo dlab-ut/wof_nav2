@@ -1,0 +1,37 @@
+collision_monitor:
+  ros__parameters:
+    base_frame_id: "base_link"
+    odom_frame_id: "map"
+    cmd_vel_in_topic: "cmd_vel_nav"
+    cmd_vel_out_topic: "whill/controller/cmd_vel"
+    # cmd_vel_out_topic: "/cmd_vel_tsukuba"
+    transform_tolerance: 0.5
+    # source_timeout: 0.0
+    base_shift_correction: True
+    stop_pub_timeout: 2.0
+    # Polygons represent zone around the robot for "stop" and "slowdown" action types,
+    # and robot footprint for "approach" action type.
+    # Footprint could be "polygon" type with dynamically set footprint from footprint_topic
+    # or "circle" type with static footprint set by radius. "footprint_topic" parameter
+    # to be ignored in circular case.
+    polygons: ["Slow20percent", "Slow40percent"]
+    Slow20percent:
+      type: "polygon"
+      points: [0.8, 0.4, 0.8, -0.4, -0.225, -0.3, -0.225, 0.3]
+      action_type: "slowdown"
+      max_points: 5
+      slowdown_ratio: 0.8
+      visualize: True
+      polygon_pub_topic: "slow_20percent"
+    Slow40percent:
+      type: "polygon"
+      points: [1.5, 0.5, 1.5, -0.5, -0.4, -0.5, -0.4, 0.5]
+      action_type: "slowdown"
+      max_points: 5
+      slowdown_ratio: 0.6
+      visualize: True
+      polygon_pub_topic: "slow_40percent"
+    observation_sources: ["PointCloud2"]
+    PointCloud2:
+      type: "PointCloud2"
+      topic: "/integrated_mid"

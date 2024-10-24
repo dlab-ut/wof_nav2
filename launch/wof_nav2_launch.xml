@@ -2,8 +2,13 @@
 <launch>
     <!-- arguments -->
     <arg name="use_sim_time" default="false" />
-    <arg name="map_file" default="$(find-pkg-share wof_nav2)/maps/dummy.yaml" />
-    <arg name="nav2_params_file" default="$(find-pkg-share wof_nav2)/config/wof_nav2_params.yaml" />
+    <!-- <arg name="map_file" default="$(find-pkg-share wof_nav2)/map/dummy.yaml" /> -->
+    <!-- <arg name="map_file" default="$(find-pkg-share wof_nav2)/map/intensityMap.yaml" /> -->
+    <!-- <arg name="map_file" default="/opt/ros/humble/share/nav2_bringup/maps/turtlebot3_world.yaml" /> -->
+    <!-- <arg name="map_file" default="/home/door/ros2_ws/src/map/tsukuba_campus_inside/tsukuba_G3_inside_map/UoT_3L/obstacle.yaml" /> -->
+    <arg name="map_file" default="/home/door/slam_ws/map/map.yaml" />
+    <!-- <arg name="nav2_params_file" default="$(find-pkg-share wof_nav2)/config/wof_nav2_params.yaml" /> -->
+    <arg name="nav2_params_file" default="$(find-pkg-share wof_nav2)/config/wof_nav2_amcl_params.yaml" />
 
     <!-- navigation -->
     <include file="$(find-pkg-share wof_nav2)/launch/bringup_launch.py">
@@ -12,7 +17,11 @@
         <arg name="params_file" value="$(var nav2_params_file)" />
     </include>
 
+    <!-- <include file="$(find-pkg-share nav2_collision_monitor)/launch/collision_monitor_node.launch.py">
+      <arg name="params_file" value="$(find-pkg-share wof_nav2)/config/collision_monitor_params.yaml" />
+    </include> -->
+
     <!-- static tf -->
-    <!-- <node pkg="tf2_ros" exec="static_transform_publisher" name="map_odom_broadcaster" args="0 0 0 0 0 0 map odom" /> -->
+    <!-- <node pkg="tf2_ros" exec="static_transform_publisher" name="map_odom_broadcaster" args="0 0 0 0 0 0 map base_link" /> -->
 
 </launch>
